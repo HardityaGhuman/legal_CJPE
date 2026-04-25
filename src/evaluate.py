@@ -3,7 +3,6 @@
 Full evaluation on held-out test set.
 Produces:
   - outputs/results/test_metrics.json        ← all numeric metrics
-  - outputs/results/benchmark_table.json     ← comparison vs published baselines
   - outputs/figures/confusion_matrix.png     ← confusion matrix heatmap
   - outputs/figures/confidence_histogram.png ← prediction confidence distribution
 """
@@ -103,83 +102,6 @@ def plot_confidence_histogram(y_prob, y_true, save_path) -> None:
     print(f"[evaluate] Confidence histogram saved to {save_path}")
 
 
-def build_benchmark_table(our_metrics: dict) -> dict:
-    """
-    Compare our results against published baselines from:
-    - ILDC paper (ACL-IJCNLP 2021)
-    - IL-TUR benchmark card (ACL 2024)
-    Returns dict for JSON + prints formatted table.
-    """
-    baselines = [
-        {
-            "model":      "TF-IDF + SVM",
-            "source":     "Malik et al. 2021 (ILDC)",
-            "accuracy":   0.7200,
-            "f1_macro":   0.7000,
-            "notes":      "Lexical baseline"
-        },
-        {
-            "model":      "BERT-base",
-            "source":     "Malik et al. 2021 (ILDC)",
-            "accuracy":   0.7400,
-            "f1_macro":   0.7200,
-            "notes":      "General BERT"
-        },
-        {
-            "model":      "Legal-BERT",
-            "source":     "Malik et al. 2021 (ILDC)",
-            "accuracy":   0.7600,
-            "f1_macro":   0.7400,
-            "notes":      "Legal domain BERT (non-Indian)"
-        },
-        {
-            "model":      "InLegalBERT (published)",
-            "source":     "Paul et al. 2023 (InLegalBERT)",
-            "accuracy":   0.7800,
-            "f1_macro":   0.7700,
-            "notes":      "Indian legal domain BERT"
-        },
-        {
-            "model":      "InLegalBERT + BiLSTM (SOTA)",
-            "source":     "IL-TUR 2024 benchmark card",
-            "accuracy":   None,
-            "f1_macro":   0.8131,
-            "notes":      "Current SOTA on IL-TUR"
-        },
-        {
-            "model":      "Human Expert",
-            "source":     "Malik et al. 2021 (ILDC)",
-            "accuracy":   0.9400,
-            "f1_macro":   None,
-            "notes":      "Upper bound"
-        },
-        {
-            "model":      ">>> OUR MODEL (InLegalBERT fine-tuned)",
-            "source":     "This work",
-            "accuracy":   our_metrics.get("accuracy"),
-            "f1_macro":   our_metrics.get("f1_macro"),
-            "notes":      f"single_train split ({config.EPOCHS} epochs)"
-        },
-    ]
-
-    # Print formatted table
-    print("\n" + "="*80)
-    print("BENCHMARK COMPARISON TABLE")
-    print("="*80)
-    header = f"{'Model':<40} {'Accuracy':>10} {'F1-Macro':>10}  Notes"
-    print(header)
-    print("-"*80)
-    for b in baselines:
-        acc  = f"{b['accuracy']:.4f}" if b['accuracy'] is not None else "    —   "
-        f1   = f"{b['f1_macro']:.4f}" if b['f1_macro'] is not None else "    —   "
-        marker = " ◀" if "OUR MODEL" in b["model"] else ""
-        name = b["model"].replace(">>> ", "")
-        print(f"  {name:<38} {acc:>10} {f1:>10}  {b['notes']}{marker}")
-    print("="*80)
-
-    return {"baselines": baselines}
-
-
 def run_evaluation(best_model_path: str = None, tokenized=None):
     """
     Full evaluation pipeline on test set.
@@ -264,11 +186,6 @@ def run_evaluation(best_model_path: str = None, tokenized=None):
     # ── Plots ─────────────────────────────────────────────────────────────────
     plot_confusion_matrix(labels, y_pred, config.OUT_FIG / "confusion_matrix.png")
     plot_confidence_histogram(y_prob, labels, config.OUT_FIG / "confidence_histogram.png")
-
-    # ── Benchmark table ───────────────────────────────────────────────────────
-    bench = build_benchmark_table(metrics)
-    with open(config.OUT_RES / "benchmark_table.json", "w") as f:
-        json.dump(bench, f, indent=2)
 
     return metrics
 

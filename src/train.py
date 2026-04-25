@@ -104,7 +104,6 @@ def plot_training_curves(log_history: list, save_path) -> None:
     axes[1].set_title("Validation F1-Macro per Epoch")
     axes[1].set_xlabel("Epoch")
     axes[1].set_ylabel("F1-Macro")
-    axes[1].axhline(y=0.78, color="red", linestyle="--", alpha=0.7, label="Published SOTA (0.78)")
     axes[1].legend()
     axes[1].grid(True, alpha=0.3)
 
