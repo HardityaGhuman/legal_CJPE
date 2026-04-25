@@ -1,0 +1,13 @@
+{
+  "accuracy": 0.6506,
+  "f1_macro": 0.6482,
+  "f1_micro": 0.6506,
+  "f1_accepted": 0.6187,
+  "f1_rejected": 0.6776,
+  "precision_macro": 0.6556,
+  "recall_macro": 0.651,
+  "roc_auc": 0.7074,
+  "decision_threshold": 0.1,
+  "dev_f1_macro_at_threshold": 0.6487,
+  "test_size": 1517
+}

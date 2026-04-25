@@ -1,0 +1,53 @@
+{
+  "baselines": [
+    {
+      "model": "TF-IDF + SVM",
+      "source": "Malik et al. 2021 (ILDC)",
+      "accuracy": 0.72,
+      "f1_macro": 0.7,
+      "notes": "Lexical baseline"
+    },
+    {
+      "model": "BERT-base",
+      "source": "Malik et al. 2021 (ILDC)",
+      "accuracy": 0.74,
+      "f1_macro": 0.72,
+      "notes": "General BERT"
+    },
+    {
+      "model": "Legal-BERT",
+      "source": "Malik et al. 2021 (ILDC)",
+      "accuracy": 0.76,
+      "f1_macro": 0.74,
+      "notes": "Legal domain BERT (non-Indian)"
+    },
+    {
+      "model": "InLegalBERT (published)",
+      "source": "Paul et al. 2023 (InLegalBERT)",
+      "accuracy": 0.78,
+      "f1_macro": 0.77,
+      "notes": "Indian legal domain BERT"
+    },
+    {
+      "model": "InLegalBERT + BiLSTM (SOTA)",
+      "source": "IL-TUR 2024 benchmark card",
+      "accuracy": null,
+      "f1_macro": 0.8131,
+      "notes": "Current SOTA on IL-TUR"
+    },
+    {
+      "model": "Human Expert",
+      "source": "Malik et al. 2021 (ILDC)",
+      "accuracy": 0.94,
+      "f1_macro": null,
+      "notes": "Upper bound"
+    },
+    {
+      "model": ">>> OUR MODEL (InLegalBERT fine-tuned)",
+      "source": "This work",
+      "accuracy": 0.6506,
+      "f1_macro": 0.6482,
+      "notes": "single_train split (4 epochs)"
+    }
+  ]
+}

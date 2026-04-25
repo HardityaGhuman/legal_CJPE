@@ -1,0 +1,13 @@
+{
+  "model": "law-ai/InLegalBERT",
+  "train_split": "single_train",
+  "train_size": 5082,
+  "dev_size": 2511,
+  "epochs": 4,
+  "batch_size": 8,
+  "learning_rate": 2e-05,
+  "max_len": 512,
+  "device": "mps",
+  "train_runtime_sec": 9076.2,
+  "train_samples_per_sec": 2.24
+}

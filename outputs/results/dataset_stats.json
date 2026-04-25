@@ -1,0 +1,17 @@
+{
+  "single_train": {
+    "total": 5082,
+    "accepted": 1935,
+    "rejected": 3147
+  },
+  "single_dev": {
+    "total": 2511,
+    "accepted": 1259,
+    "rejected": 1252
+  },
+  "test": {
+    "total": 1517,
+    "accepted": 762,
+    "rejected": 755
+  }
+}

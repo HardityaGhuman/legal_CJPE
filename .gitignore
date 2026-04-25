@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+legal_ai_env/
+.venv/
+venv/
+env/
+
+# Local dataset/cache artifacts
+data/
+
+# Training/evaluation outputs
+outputs/checkpoints
+outputs/logs
+
+# Large ML artifacts
+*.arrow
+*.bin
+*.h5
+*.pt
+*.pth
+*.safetensors
+*.ckpt
