@@ -130,6 +130,3 @@ The module can be extended through:
 - explanation or rationale extraction  
 - integration with retrieval or structured legal components  
 
----
-
-## Repository Structure
