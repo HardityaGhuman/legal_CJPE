@@ -39,17 +39,6 @@ Observed split characteristics in this project:
 - judgments are very long, with average document lengths around 3,800 to 4,000 words
 - some cases are extremely long, making truncation strategy an important modeling decision
 
-## Why This Problem Is Challenging
-
-Legal judgment prediction is difficult for several reasons:
-
-- judgments are long and exceed the native context size of standard transformer encoders
-- critical decision cues often appear near the end of the document
-- the language is formal, domain-specific, and procedurally dense
-- naive fine-tuning can lead to class imbalance issues and collapsed predictions
-
-These challenges make legal NLP different from short-text classification tasks and require deliberate choices in preprocessing, model setup, and evaluation.
-
 ## Model And Methodology
 
 The final model uses `law-ai/InLegalBERT` as the backbone. This model is particularly suitable for the task because it is pretrained on Indian legal text and therefore offers a stronger domain match than a general-purpose BERT encoder.
@@ -194,6 +183,3 @@ The most important project files are:
 - [src/evaluate.py](/Users/harditya_ghuman/Desktop/CJPE/legal_cjpe/src/evaluate.py): threshold tuning, test evaluation, and result reporting
 - [src/run_all.py](/Users/harditya_ghuman/Desktop/CJPE/legal_cjpe/src/run_all.py): end-to-end orchestration script
 
-## Summary
-
-This project demonstrates a practical deep learning workflow for Indian legal judgment prediction using a domain-specific transformer. The final system does not simply report a score; it documents a meaningful modeling journey from failure diagnosis to a stable and defensible legal NLP result.
